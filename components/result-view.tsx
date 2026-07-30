@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useMemo, useState } from "react";
 import { QUESTION_TYPES } from "@/lib/config";
 import { formatClock } from "@/lib/exam";
-import { tx } from "@/lib/i18n";
+import { fill, tx } from "@/lib/i18n";
 import { questionById } from "@/lib/questions";
 import { useSettings } from "@/lib/settings";
 import type { Difficulty, ExamResult } from "@/lib/types";
@@ -91,7 +91,15 @@ export function ResultView({
         </div>
 
         <div className="mt-5">
-          <ProgressBar value={result.correct} max={result.total} />
+          <ProgressBar
+            value={result.correct}
+            max={result.total}
+            label={t.result.scoreAria}
+            valueText={fill(t.result.scoreValue, {
+              correct: result.correct,
+              total: result.total,
+            })}
+          />
           <p className="mt-2 text-sm text-fg-muted">{percent}%</p>
         </div>
 
@@ -149,7 +157,17 @@ export function ResultView({
                   {row.correct} / {row.total}
                 </span>
               </div>
-              <ProgressBar value={row.correct} max={row.total} />
+              <ProgressBar
+                value={row.correct}
+                max={row.total}
+                label={fill(t.result.typeScoreAria, {
+                  type: t.types[row.type],
+                })}
+                valueText={fill(t.result.scoreValue, {
+                  correct: row.correct,
+                  total: row.total,
+                })}
+              />
             </div>
           ))}
         </div>

@@ -19,7 +19,7 @@ export const numberSequenceQuestions: NumberSequenceQuestion[] = [
       th: "เป็นลำดับเลขคณิตบวก 3 ทุกครั้ง 2, 5, 8, 11 แล้ว 11 + 3 = 14 และ 14 + 3 = 17 ตรงกับตัวสุดท้าย",
       en: "Arithmetic sequence adding 3 each step: 2, 5, 8, 11, then 11 + 3 = 14, and 14 + 3 = 17 matches the last term.",
     },
-    answer: { kind: "text", accepted: ["14"], placeholder: "14" },
+    answer: { kind: "text", accepted: ["14"], placeholder: "" },
   },
   {
     id: "ns-e-02",
@@ -82,7 +82,7 @@ export const numberSequenceQuestions: NumberSequenceQuestion[] = [
     answer: {
       kind: "text",
       accepted: ["24, 29, 34", "24,29,34", "24 29 34"],
-      placeholder: "24, 29, 34",
+      placeholder: "x, x, ...,x",
     },
   },
   {
@@ -146,7 +146,7 @@ export const numberSequenceQuestions: NumberSequenceQuestion[] = [
     answer: {
       kind: "text",
       accepted: ["20, 22", "20,22", "20 22"],
-      placeholder: "20, 22",
+      placeholder: "x, x, ...,x",
     },
   },
   {
@@ -300,7 +300,7 @@ export const numberSequenceQuestions: NumberSequenceQuestion[] = [
     answer: {
       kind: "text",
       accepted: ["37, 60", "37,60", "37 60"],
-      placeholder: "37, 60",
+      placeholder: "x, x, ..., x",
     },
   },
   {
@@ -379,7 +379,7 @@ export const numberSequenceQuestions: NumberSequenceQuestion[] = [
     answer: {
       kind: "text",
       accepted: ["48, 96, 192", "48,96,192", "48 96 192"],
-      placeholder: "48, 96, 192",
+      placeholder: "x, x, ..., x",
     },
   },
   {
@@ -413,7 +413,7 @@ export const numberSequenceQuestions: NumberSequenceQuestion[] = [
     answer: {
       kind: "text",
       accepted: ["20, 70", "20,70", "20 70"],
-      placeholder: "20, 70",
+      placeholder: "x, x, ..., x",
     },
   },
   {
@@ -477,7 +477,7 @@ export const numberSequenceQuestions: NumberSequenceQuestion[] = [
     answer: {
       kind: "text",
       accepted: ["27, 40", "27,40", "27 40"],
-      placeholder: "27, 40",
+      placeholder: "x, x, ..., x",
     },
   },
   {
@@ -571,7 +571,7 @@ export const numberSequenceQuestions: NumberSequenceQuestion[] = [
     answer: {
       kind: "text",
       accepted: ["33, 65, 129", "33,65,129", "33 65 129"],
-      placeholder: "33, 65, 129",
+      placeholder: "x, x, ..., x",
     },
   },
   {
@@ -587,7 +587,7 @@ export const numberSequenceQuestions: NumberSequenceQuestion[] = [
       th: "เป็นสูตรคูณของ 8 คือบวก 8 ทุกครั้ง 8, 16, 24, 32, 40 ดังนั้น 40 + 8 = 48",
       en: "Multiples of 8, so each step adds 8: 8, 16, 24, 32, 40, therefore 40 + 8 = 48.",
     },
-    answer: { kind: "text", accepted: ["48"], placeholder: "48" },
+    answer: { kind: "text", accepted: ["48"], placeholder: "" },
   },
   {
     id: "ns-e-14",
@@ -650,7 +650,7 @@ export const numberSequenceQuestions: NumberSequenceQuestion[] = [
     answer: {
       kind: "text",
       accepted: ["23, 27", "23,27", "23 27"],
-      placeholder: "23, 27",
+      placeholder: "x, x, ..., x",
     },
   },
   {
@@ -808,7 +808,7 @@ export const numberSequenceQuestions: NumberSequenceQuestion[] = [
     answer: {
       kind: "text",
       accepted: ["8, 34", "8,34", "8 34"],
-      placeholder: "8, 34",
+      placeholder: "x, x, ..., x",
     },
   },
 ];

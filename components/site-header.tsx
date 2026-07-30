@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { useSettings } from "@/lib/settings";
 import { Button, cx } from "./ui";
@@ -10,7 +11,14 @@ export function SiteHeader() {
   return (
     <header className="sticky top-0 z-20 border-b border-border-subtle bg-surface/95 backdrop-blur">
       <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-5 py-3.5">
-        <Link href="/" className="flex items-baseline gap-2.5">
+        <Link href="/" className="flex items-center gap-2.5">
+          <Image
+            src="/logo.png"
+            alt="CodeGym logo"
+            width={256}
+            height={256}
+            className="h-10 w-10 object-contain"
+          />
           <span className="text-lg font-bold tracking-tight text-brand">
             {t.appName}
           </span>

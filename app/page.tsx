@@ -4,11 +4,15 @@ import Link from "next/link";
 import { useClientSnapshot } from "@/lib/client-store";
 import {
   DIFFICULTIES,
+  FRAMEWORK_EXAM_SIZE,
+  FRAMEWORK_TIME_MINUTES,
+  FRAMEWORK_TYPES,
   QUESTIONS_PER_EXAM,
   QUESTION_TYPES,
   TIME_LIMIT_MINUTES,
 } from "@/lib/config";
 import { formatClock, remainingSec } from "@/lib/exam";
+import { fill } from "@/lib/i18n";
 import { bankSize } from "@/lib/questions";
 import { useSettings } from "@/lib/settings";
 import {
@@ -108,6 +112,41 @@ export default function HomePage() {
       </section>
 
       <section className="mt-10">
+        <SectionLabel>{lang === "th" ? "ข้อสอบ Framework" : "Framework Exams"}</SectionLabel>
+        <div className="mt-4 grid gap-5 sm:grid-cols-2">
+          {FRAMEWORK_TYPES.map((type) => (
+            <Card key={type} className="flex flex-col p-6">
+              <h2 className="text-xl font-bold text-fg">{t.types[type]}</h2>
+              <p className="mt-2 flex-1 text-sm leading-6 text-fg-muted">
+                {lang === "th"
+                  ? "คำถามระดับ mid → senior สุ่ม 30 ข้อจาก pool 90 ข้อ"
+                  : "Mid → senior level questions, 30 random from a pool of 90"}
+              </p>
+              <dl className="mt-5 space-y-2 text-sm">
+                <div className="flex justify-between">
+                  <dt className="text-fg-muted">{t.home.questionCount}</dt>
+                  <dd className="font-semibold text-fg">
+                    {FRAMEWORK_EXAM_SIZE} {t.common.items}
+                  </dd>
+                </div>
+                <div className="flex justify-between">
+                  <dt className="text-fg-muted">{t.home.timeLimit}</dt>
+                  <dd className="font-semibold text-fg">
+                    {FRAMEWORK_TIME_MINUTES} {t.common.minutes}
+                  </dd>
+                </div>
+              </dl>
+              <Link href={`/exam?level=medium&category=${type}`} className="mt-6">
+                <Button className="w-full" size="lg">
+                  {t.home.start}
+                </Button>
+              </Link>
+            </Card>
+          ))}
+        </div>
+      </section>
+
+      <section className="mt-10">
         <SectionLabel>{t.home.types}</SectionLabel>
         <div className="mt-3 flex flex-wrap gap-2">
           {QUESTION_TYPES.map((type) => (
@@ -169,7 +208,15 @@ export default function HomePage() {
                       </div>
                     </div>
                     <div className="mt-3">
-                      <ProgressBar value={entry.correct} max={entry.total} />
+                      <ProgressBar
+                        value={entry.correct}
+                        max={entry.total}
+                        label={t.result.scoreAria}
+                        valueText={fill(t.result.scoreValue, {
+                          correct: entry.correct,
+                          total: entry.total,
+                        })}
+                      />
                     </div>
                   </Card>
                 </li>

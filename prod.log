@@ -1,0 +1,99 @@
+[96m[1m​[22m[39m
+[96m[1mNetlify Build                                                 [22m[39m
+[96m[1m────────────────────────────────────────────────────────────────[22m[39m
+[36m[1m​[22m[39m
+[36m[1m> Version[22m[39m
+  @netlify/build 35.15.0
+[36m[1m​[22m[39m
+[36m[1m> Flags[22m[39m
+  accountId: 698620198aeaa822302f8ac6
+  deployId: 6a6a2afac3193cb05a748543
+[36m[1m​[22m[39m
+[36m[1m> Current directory[22m[39m
+  C:\Users\winza\OneDrive\Desktop\CodeGym
+[36m[1m​[22m[39m
+[36m[1m> Config file[22m[39m
+  C:\Users\winza\OneDrive\Desktop\CodeGym\netlify.toml
+[36m[1m​[22m[39m
+[36m[1m> Context[22m[39m
+  production
+[36m[1m​[22m[39m
+[36m[1m> Using Next.js Runtime - v5.15.13[22m[39m
+[96m[1m​[22m[39m
+[96m[1mbuild.command from netlify.toml                               [22m[39m
+[96m[1m────────────────────────────────────────────────────────────────[22m[39m
+​
+[36m$ npm run build[39m
+
+> codegym@0.1.0 build
+> next build
+
+▲ Next.js 16.2.11 (Turbopack)
+
+  Creating an optimized production build ...
+✓ Compiled successfully in 3.8s
+  Running TypeScript ...
+  Finished TypeScript in 4.0s ...
+  Collecting page data using 7 workers ...
+  Generating static pages using 7 workers (0/6) ...
+  Generating static pages using 7 workers (1/6) 
+  Generating static pages using 7 workers (2/6) 
+  Generating static pages using 7 workers (4/6) 
+✓ Generating static pages using 7 workers (6/6) in 1104ms
+  Finalizing page optimization ...
+
+Route (app)
+┌ ○ /
+├ ○ /exam
+├ ○ /_not-found
+└ ○ /result
+
+
+○  (Static)  prerendered as static content
+
+​
+[90m(build.command completed in 14.9s)[39m
+[96m[1m​[22m[39m
+[96m[1mFunctions bundling                                            [22m[39m
+[96m[1m────────────────────────────────────────────────────────────────[22m[39m
+​
+Packaging Functions from [36m.netlify\functions-internal[39m directory:
+ - ___netlify-server-handler\___netlify-server-handler.mjs
+​
+​
+[90m(Functions bundling completed in 13.1s)[39m
+
+Deploying to Netlify
+────────────────────────────────────────────────────────────────
+
+[32mDeploy path: [39m       C:\Users\winza\OneDrive\Desktop\CodeGym\.next
+[32mConfiguration path: [39mC:\Users\winza\OneDrive\Desktop\CodeGym\netlify.toml
+
+[33m⠋[39m Uploading blobs to deploy store...
+
+[32m√[39m Finished uploading blobs to deploy store
+[33m⠋[39m Hashing files...
+[33m⠋[39m Looking for a functions cache...
+[32m√[39m Deploying functions from cache (use --skip-functions-cache to override)
+[32m√[39m Finished hashing 41 files and 1 functions
+[33m⠋[39m CDN diffing files...
+[32m√[39m CDN requesting 0 files and 1 functions
+[33m⠋[39m Uploading 1 files
+[32m√[39m Finished uploading 1 assets
+[33m⠋[39m Waiting for deploy to go live...
+[32m√[39m Deploy is live!
+[96m[1m​[22m[39m
+[96m[1mNetlify Build Complete                                        [22m[39m
+[96m[1m────────────────────────────────────────────────────────────────[22m[39m
+​
+[90m(Netlify Build completed in 4m 7.8s)[39m
+
+🚀 Deploy complete
+────────────────────────────────────────────────────────────────
+
+Production URL: <https://codegym-logic.netlify.app>
+Unique deploy URL: <https://6a6a2afac3193cb05a748543--codegym-logic.netlify.app>
+
+Build logs: <https://app.netlify.com/projects/codegym-logic/deploys/6a6a2afac3193cb05a748543>
+Function logs: <https://app.netlify.com/projects/codegym-logic/logs/functions>
+Edge function logs: <https://app.netlify.com/projects/codegym-logic/logs/edge-functions>

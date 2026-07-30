@@ -5,6 +5,8 @@ import { numberSequenceQuestions } from "./number-sequence";
 import { tableDebugQuestions } from "./table-debug";
 import { sqlLogicQuestions } from "./sql-logic";
 import { brainTeaserQuestions } from "./brain-teaser";
+import { angularQuestions } from "./angular";
+import { reactNextjsQuestions } from "./react-nextjs";
 
 export const allQuestions: Question[] = [
   ...codeTraceQuestions,
@@ -13,6 +15,8 @@ export const allQuestions: Question[] = [
   ...tableDebugQuestions,
   ...sqlLogicQuestions,
   ...brainTeaserQuestions,
+  ...angularQuestions,
+  ...reactNextjsQuestions,
 ];
 
 const byId = new Map(allQuestions.map((q) => [q.id, q]));

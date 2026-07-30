@@ -13,7 +13,9 @@ export type QuestionType =
   | "number-sequence"
   | "table-debug"
   | "sql-logic"
-  | "brain-teaser";
+  | "brain-teaser"
+  | "angular"
+  | "react-nextjs";
 
 export type Difficulty = "easy" | "medium" | "hard";
 
@@ -94,13 +96,27 @@ export interface BrainTeaserQuestion extends BaseQuestion {
   language?: CodeLanguage;
 }
 
+export interface AngularQuestion extends BaseQuestion {
+  type: "angular";
+  code?: string;
+  language?: CodeLanguage;
+}
+
+export interface ReactNextjsQuestion extends BaseQuestion {
+  type: "react-nextjs";
+  code?: string;
+  language?: CodeLanguage;
+}
+
 export type Question =
   | CodeTraceQuestion
   | PseudoCodeQuestion
   | NumberSequenceQuestion
   | TableDebugQuestion
   | SqlLogicQuestion
-  | BrainTeaserQuestion;
+  | BrainTeaserQuestion
+  | AngularQuestion
+  | ReactNextjsQuestion;
 
 /** A user answer while the exam is running. */
 export type UserAnswer =

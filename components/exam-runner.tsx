@@ -24,6 +24,7 @@ import type {
   Difficulty,
   ExamResult,
   ExamSession,
+  QuestionType,
   UserAnswer,
 } from "@/lib/types";
 import { QuestionCard } from "./question-card";
@@ -38,7 +39,7 @@ function parseLevel(value: string | null): Difficulty {
  * The running set lives in localStorage, which keeps a reload or an accidental
  * navigation from losing answers. Components read it through the client store.
  */
-function ensureSession(level: Difficulty, wantsResume: boolean) {
+function ensureSession(level: Difficulty, wantsResume: boolean, category?: QuestionType) {
   const stored = loadActiveSession();
   const resumable =
     wantsResume &&
@@ -48,7 +49,7 @@ function ensureSession(level: Difficulty, wantsResume: boolean) {
     remainingSec(stored) > 0;
 
   if (resumable) return;
-  saveActiveSession(createSession(level));
+  saveActiveSession(createSession(level, category));
 }
 
 export function ExamRunner() {
@@ -57,6 +58,7 @@ export function ExamRunner() {
 
   const level = parseLevel(params.get("level"));
   const wantsResume = params.get("resume") === "1";
+  const category = params.get("category") as QuestionType | null;
 
   const session = useClientSnapshot(loadActiveSession, undefined);
   const [current, setCurrent] = useState(0);
@@ -68,8 +70,8 @@ export function ExamRunner() {
   useEffect(() => {
     if (startedRef.current) return;
     startedRef.current = true;
-    ensureSession(level, wantsResume);
-  }, [level, wantsResume]);
+    ensureSession(level, wantsResume, category ?? undefined);
+  }, [level, wantsResume, category]);
 
   const submit = useCallback((auto: boolean) => {
     const live = loadActiveSession();
@@ -186,7 +188,15 @@ export function ExamRunner() {
                 </span>
               </div>
               <div className="mt-2">
-                <ProgressBar value={answeredCount} max={total} />
+                <ProgressBar
+                  value={answeredCount}
+                  max={total}
+                  label={t.exam.progressAria}
+                  valueText={fill(t.exam.progressValue, {
+                    answered: answeredCount,
+                    total,
+                  })}
+                />
               </div>
             </div>
             <Badge tone="brand">{t.difficulty[session.difficulty]}</Badge>

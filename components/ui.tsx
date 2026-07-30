@@ -107,21 +107,31 @@ export function ProgressBar({
   value,
   max,
   tone = "brand",
+  label,
+  valueText,
 }: {
   value: number;
   max: number;
   tone?: "brand" | "warning" | "danger";
+  /** Accessible name. Required so the bar is never announced as a nameless progressbar. */
+  label: string;
+  /** Readable value announced instead of the raw number, e.g. "12 of 60 answered". */
+  valueText?: string;
 }) {
-  const pct = max > 0 ? Math.min(100, Math.max(0, (value / max) * 100)) : 0;
+  const safeMax = max > 0 ? max : 1;
+  const clamped = Math.min(safeMax, Math.max(0, value));
+  const pct = (clamped / safeMax) * 100;
   const fill =
     tone === "danger" ? "bg-danger" : tone === "warning" ? "bg-warning" : "bg-brand";
   return (
     <div
       className="h-2 w-full overflow-hidden rounded-full bg-border-subtle"
       role="progressbar"
-      aria-valuenow={Math.round(pct)}
+      aria-label={label}
+      aria-valuenow={clamped}
       aria-valuemin={0}
-      aria-valuemax={100}
+      aria-valuemax={safeMax}
+      aria-valuetext={valueText}
     >
       <div
         className={cx("h-full rounded-full transition-[width] duration-300", fill)}

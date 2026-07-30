@@ -171,6 +171,15 @@ function QuestionBody({
         />
       ) : null;
 
+    case "angular":
+    case "react-nextjs":
+      return question.code ? (
+        <CodeBlock
+          code={question.code}
+          language={question.language ?? "javascript"}
+        />
+      ) : null;
+
     default:
       return null;
   }

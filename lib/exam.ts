@@ -1,4 +1,4 @@
-import { QUESTIONS_PER_EXAM, QUESTION_TYPES, timeLimitSec } from "./config";
+import { FRAMEWORK_EXAM_SIZE, FRAMEWORK_TIME_MINUTES, FRAMEWORK_TYPES, QUESTIONS_PER_EXAM, QUESTION_TYPES, timeLimitSec } from "./config";
 import { getQuestions, questionById } from "./questions";
 import type {
   AnswerSpec,
@@ -7,6 +7,7 @@ import type {
   ExamSession,
   Question,
   QuestionResult,
+  QuestionType,
   UserAnswer,
 } from "./types";
 
@@ -46,7 +47,18 @@ export function pickQuestions(
   return shuffle(picked);
 }
 
-export function createSession(difficulty: Difficulty): ExamSession {
+export function createSession(difficulty: Difficulty, frameworkType?: QuestionType): ExamSession {
+  if (frameworkType && FRAMEWORK_TYPES.includes(frameworkType)) {
+    const questions = pickFrameworkQuestions(frameworkType);
+    return {
+      id: `${frameworkType}-${Date.now()}`,
+      difficulty: "medium",
+      questionIds: questions.map((q) => q.id),
+      answers: {},
+      startedAt: Date.now(),
+      durationSec: FRAMEWORK_TIME_MINUTES * 60,
+    };
+  }
   const questions = pickQuestions(difficulty);
   return {
     id: `${difficulty}-${Date.now()}`,
@@ -56,6 +68,26 @@ export function createSession(difficulty: Difficulty): ExamSession {
     startedAt: Date.now(),
     durationSec: timeLimitSec(difficulty),
   };
+}
+
+/**
+ * Pick random questions from a specific framework category.
+ * Uses all difficulties available in the pool.
+ */
+export function pickFrameworkQuestions(
+  type: QuestionType,
+  size = FRAMEWORK_EXAM_SIZE
+): Question[] {
+  const pool = shuffle(
+    allQuestionsOfType(type)
+  );
+  return pool.slice(0, size);
+}
+
+function allQuestionsOfType(type: QuestionType): Question[] {
+  return getQuestions("easy", type)
+    .concat(getQuestions("medium", type))
+    .concat(getQuestions("hard", type));
 }
 
 export function remainingSec(session: ExamSession, now = Date.now()) {
